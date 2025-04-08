@@ -1,5 +1,7 @@
 import { model, Schema } from 'mongoose';
 import { TUser } from './user.interface';
+import bcrypt from 'bcrypt';
+import config from '../../config';
 
 const userSchema = new Schema<TUser>(
   {
@@ -43,5 +45,22 @@ const userSchema = new Schema<TUser>(
     timestamps: true,
   },
 );
+
+// hash password and save into Database(the hash password)
+userSchema.pre('save', async function (next) {
+  const user = this; //this refers to document
+  user.password = await bcrypt.hash(
+    user.password, //password to be hashed
+    Number(config.bcrypt_salt_rounds),
+  );
+
+  next();
+});
+
+//remove it from doc, wont effect the original document
+userSchema.post('save', function (doc, next) {
+  doc.password = '';
+  next();
+});
 
 export const User = model<TUser>('User', userSchema);
