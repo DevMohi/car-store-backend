@@ -52,5 +52,11 @@ const productSchema = new Schema<TProduct>(
   },
 );
 
+//Before saving pre hook used to update stock
+productSchema.pre('save', function (next) {
+  this.inStock = this.quantity > 0;
+  next();
+});
+
 // Export the model
 export const Products = model<TProduct>('Products', productSchema);
