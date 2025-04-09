@@ -27,7 +27,6 @@ const createAdmin = catchAsync(async (req, res) => {
   });
 });
 
-//Get All
 
 // Get All User Controllers
 const getAllUser = catchAsync(async (req, res) => {
