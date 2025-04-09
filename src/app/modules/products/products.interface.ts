@@ -5,7 +5,7 @@ export type TProduct = {
   model: string; //Hybrid
   year: number;
   category: 'Sedan' | 'SUV' | 'Truck' | 'Coupe' | 'Convertible';
-  quantity: number;
+  stock: number;
   inStock: boolean;
   image: string;
   productDetails: string;

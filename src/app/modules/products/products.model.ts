@@ -30,7 +30,7 @@ const productSchema = new Schema<TProduct>(
       enum: ProductCategory,
       required: true,
     },
-    quantity: {
+    stock: {
       type: Number,
       required: true,
     },
@@ -54,7 +54,7 @@ const productSchema = new Schema<TProduct>(
 
 //Before saving pre hook used to update stock
 productSchema.pre('save', function (next) {
-  this.inStock = this.quantity > 0;
+  this.inStock = this.stock > 0;
   next();
 });
 

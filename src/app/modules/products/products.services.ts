@@ -26,8 +26,8 @@ const getSingleProductFromDB = async (id: string) => {
 
 const updateProductFromDB = async (id: string, payload: Partial<TProduct>) => {
   //in-stock handled
-  if (payload.quantity !== undefined) {
-    payload.inStock = payload.quantity > 0;
+  if (payload.stock !== undefined) {
+    payload.inStock = payload.stock > 0;
   }
   const result = await Products.findByIdAndUpdate(id, payload, {
     new: true,

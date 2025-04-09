@@ -12,7 +12,7 @@ export const createProductValidationSchema = z.object({
       .min(1900)
       .max(new Date().getFullYear()),
     category: z.enum([...ProductCategory] as [string, ...string[]]),
-    quantity: z.number({ required_error: 'Please provide quantity' }).min(0),
+    stock: z.number({ required_error: 'Please provide stock' }).min(0),
     inStock: z.boolean({ required_error: 'Please specify stock status' }),
     image: z.string().optional(),
     productDetails: z.string({
@@ -42,7 +42,7 @@ export const updateProductValidationSchema = z.object({
       .max(new Date().getFullYear())
       .optional(),
     category: z.enum([...ProductCategory] as [string, ...string[]]).optional(),
-    quantity: z
+    stock: z
       .number({ required_error: 'Please provide quantity' })
       .min(0)
       .optional(),
