@@ -21,11 +21,47 @@ const loginUser = catchAsync(async (req, res) => {
     message: 'User Logged In Successfully',
     data: {
       accessToken,
-      refreshToken,
     },
+  });
+});
+
+//not completed yet
+const logoutUser = catchAsync(async (req, res) => {
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'User logged out successfully',
+    data: null,
+  });
+});
+
+//Nijer Profile info nijer dekte parbe, for admin -> admin can see it and for customer the same thing.
+const getMe = catchAsync(async (req, res) => {
+  const result = await AuthServices.getUserFromDB(req?.user?.email);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Logedin User Retrieved Successful',
+    data: result,
+  });
+});
+
+const changePassword = catchAsync(async (req, res) => {
+  // console.log(req.user, req.body);
+  const { ...passwordData } = req.body;
+  const result = await AuthServices.changePassword(req.user, passwordData);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Password Changed Successfully',
+    data: result,
   });
 });
 
 export const AuthControllers = {
   loginUser,
+  logoutUser,
+  getMe,
+  changePassword,
 };

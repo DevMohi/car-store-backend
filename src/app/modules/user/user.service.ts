@@ -13,6 +13,30 @@ const getAllUsersFromDB = async () => {
   return result;
 };
 
+//update User Based on admin or customer
+const updateUserInfoIntoDB = async (
+  userInfo: Partial<TUser>,
+  email: string,
+) => {
+  console.log(email);
+
+  const user = await User.isUserExistByEmail(email);
+  if (!user) {
+    throw new AppError(404, 'User Not Found');
+  }
+
+  if (userInfo.password) {
+    throw new AppError(401, 'cannot change password without current password');
+  }
+
+  const result = await User.findOneAndUpdate({ email }, userInfo, {
+    new: true,
+    runValidators: true,
+  });
+
+  return result;
+};
+
 // user - status
 const userStatusUpdateIntoDB = async (id: string, status: string) => {
   if (status !== 'active' && status !== 'deactive') {
@@ -33,5 +57,6 @@ const userStatusUpdateIntoDB = async (id: string, status: string) => {
 export const UserServices = {
   createUserIntoDB,
   getAllUsersFromDB,
+  updateUserInfoIntoDB,
   userStatusUpdateIntoDB,
 };

@@ -27,7 +27,6 @@ const createAdmin = catchAsync(async (req, res) => {
   });
 });
 
-
 // Get All User Controllers
 const getAllUser = catchAsync(async (req, res) => {
   const result = await UserServices.getAllUsersFromDB();
@@ -35,6 +34,20 @@ const getAllUser = catchAsync(async (req, res) => {
     statusCode: 200,
     success: true,
     message: 'Users Retrieved Successful',
+    data: result,
+  });
+});
+
+// Update User Info
+const updateUserInfo = catchAsync(async (req, res) => {
+  const result = await UserServices.updateUserInfoIntoDB(
+    req?.body,
+    req.user?.email,
+  );
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'User Info Updated Successful',
     data: result,
   });
 });
@@ -58,5 +71,6 @@ export const UserControllers = {
   createUser,
   createAdmin,
   getAllUser,
+  updateUserInfo,
   updateUserStatus,
 };
