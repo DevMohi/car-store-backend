@@ -26,23 +26,52 @@ class QueryBuilder<T> {
 
   filter() {
     const queryObj = { ...this.query };
-    //Filtering
-    const excludeFields = ['searchTerm', 'sort', 'limit', 'page', 'fields'];
 
+    // Exclude fields for filtering
+    const excludeFields = [
+      'searchTerm',
+      'sort',
+      'limit',
+      'page',
+      'fields',
+      'minPrice',
+      'maxPrice',
+      'availability',
+    ];
     excludeFields.forEach((el) => delete queryObj[el]);
 
+    // Price Range Filter
+    const priceFilter: any = {};
+    const minPrice = Number(this.query?.minPrice);
+    const maxPrice = Number(this.query?.maxPrice);
+
+    if (!isNaN(minPrice)) {
+      priceFilter.$gte = minPrice;
+    }
+
+    if (!isNaN(maxPrice)) {
+      priceFilter.$lte = maxPrice;
+    }
+
+    if (Object.keys(priceFilter).length) {
+      queryObj.price = priceFilter;
+    }
+
+    // Handle availability (inStock)
+    const availability = this.query?.availability;
+    if (availability === 'in-stock') {
+      queryObj.inStock = true; // Explicitly set to boolean true
+    } else if (availability === 'out-of-stock') {
+      queryObj.inStock = false; // Explicitly set to boolean false
+    }
+
+    // Logging the final query
+    console.log('Query After Filtering:', queryObj);
+
     this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
-    return this;
-  }
-
-  sort() {
-    const sort =
-      (this?.query?.sort as string)?.split(',')?.join(' ') || '-createdAt';
-    this.modelQuery = this.modelQuery.sort(sort as string);
 
     return this;
   }
-
 }
 
 export default QueryBuilder;

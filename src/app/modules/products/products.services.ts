@@ -12,13 +12,12 @@ const createProductIntoDB = async (product: TProduct) => {
 //getAll not created yet
 
 const getAllProductsFromDB = async (query: Record<string, unknown>) => {
-  const productsQuery = new QueryBuilder(Products.find(), query).search(
-    searchableProductFields,
-  );
+  const productsQuery = new QueryBuilder(Products.find(), query)
+    .search(searchableProductFields)
+    .filter();
   const result = await productsQuery.modelQuery;
   return result;
 };
-
 
 const getSingleProductFromDB = async (id: string) => {
   const result = await Products.findById(id);
