@@ -3,8 +3,7 @@ import validateRequest from '../../middlewares/validateRequest';
 import { AuthValidationSchema } from './auth.validation';
 import { AuthControllers } from './auth.controller';
 import auth from '../../middlewares/auth';
-import { UserValidationSchema } from '../user/user.validation';
-import { UserControllers } from '../user/user.controller';
+
 const router = express.Router();
 
 router.post(

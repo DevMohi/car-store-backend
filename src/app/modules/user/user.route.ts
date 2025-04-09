@@ -31,6 +31,10 @@ router.patch(
 );
 
 //Can be done by admin only
-router.patch('/update-status/:id', UserControllers.updateUserStatus);
+router.patch(
+  '/update-status/:id',
+  auth('admin'),
+  UserControllers.updateUserStatus,
+);
 
 export const UserRoutes = router;
