@@ -29,6 +29,15 @@ const orderSchema = new Schema<TOrder>({
     type: Number,
     required: true,
   },
+  transaction: {
+    id: String,
+    transaction_status: String,
+    bank_status: String,
+    sp_code: String,
+    sp_message: String,
+    method: String,
+    date_time: String,
+  },
   status: {
     type: String,
     enum: ['Pending', 'Paid', 'Shipped', 'Completed', 'Cancelled'],

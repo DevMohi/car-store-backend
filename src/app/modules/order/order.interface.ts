@@ -7,6 +7,15 @@ export type TOrder = {
     quantity: number;
   }[];
   totalPrice: number;
-  deliveryStatus: 'Delivered' | 'Pending' | 'Cancelled';
   status: 'Pending' | 'Paid' | 'Shipped' | 'Completed' | 'Cancelled';
+  deliveryStatus: 'Delivered' | 'Pending' | 'Cancelled';
+  transaction: {
+    id: string;
+    transaction_status?: string;
+    bank_status: string;
+    sp_code: string;
+    sp_message: string;
+    method: string;
+    date_time: string;
+  };
 };
