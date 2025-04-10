@@ -17,7 +17,7 @@ const getAllProducts = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: 'Products retrieved successfully',
+    message: 'All Products retrieved successfully',
     data: result,
   });
 });
