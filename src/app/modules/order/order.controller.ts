@@ -75,7 +75,7 @@ const updateOrder = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: 'Order Updated Successful',
+    message: 'Order Updated Successfully',
     data: result,
   });
 });
@@ -86,7 +86,7 @@ const deleteOrder = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: 'Order Deleted Successful',
+    message: 'Order Deleted Successfully',
     data: result,
   });
 });

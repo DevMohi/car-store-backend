@@ -7,5 +7,4 @@ export const ProductCategory = [
 ];
 
 // export const searchProduct
-
 export const searchableProductFields = ['name', 'brand', 'category'];

@@ -12,17 +12,6 @@ const createProduct = catchAsync(async (req, res) => {
   });
 });
 
-//getAll
-
-// const getAllProducts = catchAsync(async (req, res) => {
-//   sendResponse(res, {
-//     statusCode: 200,
-//     success: true,
-//     message: 'All Products retrieved successfully',
-//     data: result,
-//   });
-// });
-
 const getAllProducts = catchAsync(async (req, res) => {
   const result = await ProductServices.getAllProductsFromDB(req.query);
   sendResponse(res, {

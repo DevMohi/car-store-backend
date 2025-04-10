@@ -15,8 +15,7 @@ router.post(
   ProductControllers.createProduct,
 );
 
-
-router.get('/', ProductControllers.getAllProducts);  
+router.get('/', ProductControllers.getAllProducts);
 router.get('/:productId', ProductControllers.getSingleProduct);
 
 router.patch(
@@ -26,7 +25,6 @@ router.patch(
   ProductControllers.updateProduct,
 );
 
-//Didnt test yet
-router.delete('/productId', auth('admin'), ProductControllers.deleteProduct);
+router.delete('/:productId', auth('admin'), ProductControllers.deleteProduct);
 
 export const ProductRoutes = router;

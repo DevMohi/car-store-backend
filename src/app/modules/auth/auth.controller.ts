@@ -27,6 +27,7 @@ const loginUser = catchAsync(async (req, res) => {
 
 //not completed yet
 const logoutUser = catchAsync(async (req, res) => {
+  res.clearCookie('accessToken');
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -41,7 +42,7 @@ const getMe = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: 'Logedin User Retrieved Successful',
+    message: 'Loggedin User Retrieved Successfully',
     data: result,
   });
 });

@@ -1,14 +1,23 @@
 import Shurjopay, { VerificationResponse } from 'shurjopay';
+import config from '../../config';
 
 export const shurjopay = new Shurjopay();
 
 shurjopay.config(
-  'https://sandbox.shurjopayment.com',
-  'sp_sandbox',
-  'pyyk97hu&6u6',
-  'INV',
-  'https://f599-103-148-177-6.ngrok-free.app',
+  config.sp_endpoint!,
+  config.sp_username!,
+  config.sp_password!,
+  config.sp_prefix!,
+  config.sp_return_url!,
 );
+
+// shurjopay.config(
+//   'https://sandbox.shurjopayment.com',
+//   'sp_sandbox',
+//   'pyyk97hu&6u6',
+//   'INV',
+//   'https://f599-103-148-177-6.ngrok-free.app',
+// );
 
 const makePaymentAsync = async (
   orderPayload: any,

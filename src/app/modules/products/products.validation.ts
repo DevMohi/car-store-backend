@@ -14,6 +14,9 @@ export const createProductValidationSchema = z.object({
     category: z.enum([...ProductCategory] as [string, ...string[]]),
     stock: z.number({ required_error: 'Please provide stock' }).min(0),
     inStock: z.boolean({ required_error: 'Please specify stock status' }),
+    isFeatured: z.boolean({
+      required_error: 'Please tell whether its featured',
+    }),
     image: z.string().optional(),
     productDetails: z.string({
       required_error: 'Please provide product details',
@@ -48,6 +51,9 @@ export const updateProductValidationSchema = z.object({
       .optional(),
     inStock: z
       .boolean({ required_error: 'Please specify stock status' })
+      .optional(),
+    isFeatured: z
+      .boolean({ required_error: 'Please specify featured status' })
       .optional(),
     image: z.string().optional(),
     productDetails: z

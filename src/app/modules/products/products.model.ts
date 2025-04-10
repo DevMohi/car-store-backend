@@ -38,6 +38,11 @@ const productSchema = new Schema<TProduct>(
       type: Boolean,
       required: true,
     },
+    isFeatured: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
     image: {
       type: String,
       required: true,

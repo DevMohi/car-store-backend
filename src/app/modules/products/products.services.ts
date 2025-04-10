@@ -6,10 +6,8 @@ import { Products } from './products.model';
 const createProductIntoDB = async (product: TProduct) => {
   const result = await Products.create(product);
   return result;
-  // const result = await
+ 
 };
-
-//getAll not created yet
 
 const getAllProductsFromDB = async (query: Record<string, unknown>) => {
   const productsQuery = new QueryBuilder(Products.find(), query)
