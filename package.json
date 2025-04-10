@@ -1,5 +1,5 @@
 {
-  "name": "first-project",
+  "name": "car-store",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "start:dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "build": "tsc",
     "test": "echo 'Scripts are working!'",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint src/**/*.ts", 
     "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier . --write"
   },
