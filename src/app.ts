@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:5173',
-      'https://car-store-assingment.vercel.app',
+      'https://car-shop-frontend-assignment-4.vercel.app',
     ],
     credentials: true,
   }),
