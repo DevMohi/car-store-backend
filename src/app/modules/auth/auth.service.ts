@@ -19,6 +19,10 @@ const loginUser = async (payload: TLoginUser) => {
     throw new AppError(401, 'Invalid password');
   }
 
+  if (user?.status === 'deactive'){
+    throw new AppError(401, 'Deactive Account');
+  }
+
   //if they pass this send accessToken and refress token
   //create Token and send to client
 
