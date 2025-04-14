@@ -43,9 +43,10 @@ const orderSchema = new Schema<TOrder>({
     enum: ['Pending', 'Paid', 'Shipped', 'Completed', 'Cancelled'],
     default: 'Pending',
   },
+},
   {
     timestamps: true,
   },
-});
+);
 
 export const Order = model('Order', orderSchema);
