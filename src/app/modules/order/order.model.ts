@@ -22,7 +22,7 @@ const orderSchema = new Schema<TOrder>({
   ],
   deliveryStatus: {
     type: String,
-    enum: ['Delivered', 'Pending', 'Cancel'],
+    enum: ['Delivered', 'Processing', 'Pending', 'Cancelled', 'Shipped'],
     default: 'Pending',
   },
   totalPrice: {
