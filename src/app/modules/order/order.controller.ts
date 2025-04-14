@@ -38,6 +38,17 @@ const getAllOrders = catchAsync(async (req, res) => {
     data: result,
   });
 });
+//Get all -> for all
+const getOrderById = catchAsync(async (req, res) => {
+  const orderId = req.params.id;
+  const result = await OrderServices.getOrderByIdFromDB(req.user.email, orderId);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Order data retrieved',
+    data: result,
+  });
+});
 
 // Order Verify Controllers
 const orderverify = catchAsync(async (req, res) => {
@@ -95,6 +106,7 @@ export const OrderControllers = {
   createOrder,
   getCustomerOrders,
   getAllOrders,
+  getOrderById,
   deleteOrder,
   updateDeliveryStatus,
   orderverify,

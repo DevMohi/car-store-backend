@@ -20,6 +20,9 @@ router.get('/my-orders', auth('customer'), OrderControllers.getCustomerOrders);
 //All Orders -> Admin can see all the orders , however customer can see their orders only
 router.get('/all-orders', auth('admin'), OrderControllers.getAllOrders);
 
+//All Orders -> Admin can see all the orders , however customer can see their orders only
+router.get('/order/:id', auth('admin','customer'), OrderControllers.getOrderById);
+
 //Verify Payment
 router.get('/verify', auth('customer'), OrderControllers.orderverify);
 

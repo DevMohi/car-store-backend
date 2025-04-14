@@ -125,6 +125,15 @@ const getAllOrdersFromDB = async (email: string) => {
   return result;
 };
 
+const getOrderByIdFromDB = async (email: string, orderId:string) => {
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new AppError(404, 'User Not Found');
+  }
+  const result = await Order.findById(orderId).populate('user');
+  return result;
+};
+
 const updateDeliveryStatusFromDB = async (
   deliveryStatus: string,
   orderId: string,
@@ -242,6 +251,7 @@ export const OrderServices = {
   createOrderIntoDB,
   getCustomerOrderFromDB,
   getAllOrdersFromDB,
+  getOrderByIdFromDB,
   updateDeliveryStatusFromDB,
   verifyPayment,
   updateOrderIntoDB,
