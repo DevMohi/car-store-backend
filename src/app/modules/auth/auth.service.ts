@@ -54,6 +54,7 @@ const getUserFromDB = async (email: string) => {
   if (!user) {
     throw new AppError(404, 'User Not Found');
   }
+  user.password = '';
   return user;
 };
 
