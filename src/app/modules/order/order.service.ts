@@ -121,7 +121,7 @@ const getAllOrdersFromDB = async (email: string) => {
   if (!user) {
     throw new AppError(404, 'User Not Found');
   }
-  const result = await Order.find().populate('user');
+  const result = await Order.find().sort({createdAt: -1}).populate('user');
   return result;
 };
 
