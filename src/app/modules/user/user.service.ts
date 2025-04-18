@@ -9,7 +9,7 @@ const createUserIntoDB = async (userInfo: TUser) => {
 };
 
 const getAllUsersFromDB = async () => {
-  const result = await User.find();
+  const result = await User.find().sort({createdAt: -1});
   return result;
 };
 

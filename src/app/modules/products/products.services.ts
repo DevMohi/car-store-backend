@@ -13,7 +13,7 @@ const getAllProductsFromDB = async (query: Record<string, unknown>) => {
   const productsQuery = new QueryBuilder(Products.find(), query)
     .search(searchableProductFields)
     .filter();
-  const result = await productsQuery.modelQuery;
+  const result = await productsQuery.modelQuery.sort({createdAt: -1});
   return result;
 };
 

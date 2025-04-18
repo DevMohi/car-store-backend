@@ -8,7 +8,7 @@ export type TOrder = {
   }[];
   totalPrice: number;
   status: 'Pending' | 'Paid' | 'Shipped' | 'Completed' | 'Cancelled';
-  deliveryStatus: 'Delivered' | 'Pending' | 'Cancelled';
+  deliveryStatus: 'Delivered' | 'Pending' | 'Cancelled' | 'Shipped' | 'Proccesing';
   transaction: {
     id: string;
     transaction_status?: string;

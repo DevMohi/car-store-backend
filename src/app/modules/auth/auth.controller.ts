@@ -1,12 +1,15 @@
+import { createToken } from './auth.utils';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import config from '../../config';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { AuthServices } from './auth.service';
+import AppError from '../../errors/AppError';
+import { User } from '../user/user.model';
 
 const loginUser = catchAsync(async (req, res) => {
   const result = await AuthServices.loginUser(req.body);
   const { accessToken, refreshToken } = result;
-  console.log(accessToken);
 
   res.cookie('refreshToken', refreshToken, {
     secure: config.NODE_ENV === 'production',
@@ -60,9 +63,24 @@ const changePassword = catchAsync(async (req, res) => {
   });
 });
 
+//RefreshToken
+const refreshToken = catchAsync(async (req, res) => {
+  const { refreshToken } = req.cookies;
+  const result = await AuthServices.getNewRefreshToken(refreshToken);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Access token is retrieved successfully!',
+    data: result,
+  });
+});
+
+
 export const AuthControllers = {
   loginUser,
   logoutUser,
   getMe,
   changePassword,
+  refreshToken
 };
