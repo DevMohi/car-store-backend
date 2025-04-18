@@ -18,8 +18,8 @@ const createOrderValidationSchema = z.object({
 
 const updateDeliveryStatusValidationSchema = z.object({
   body: z.object({
-    deliveryStatus: z.string(),
-  }),
+    deliveryStatus: z.enum(['Delivered', 'Processing', 'Pending', 'Cancelled', 'Shipped']),
+  })
 });
 
 const updateOrderValidationSchema = z.object({
