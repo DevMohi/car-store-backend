@@ -3,6 +3,7 @@ import sendResponse from '../../utils/sendResponse';
 import { OrderServices } from './order.service';
 
 const createOrder = catchAsync(async (req, res) => {
+  console.log(req.body);
   const result = await OrderServices.createOrderIntoDB(
     req.body,
     req.user,
@@ -53,7 +54,6 @@ const getOrderById = catchAsync(async (req, res) => {
 // Order Verify Controllers
 const orderverify = catchAsync(async (req, res) => {
   const result = await OrderServices.verifyPayment(req.query.orderId as string);
-  console.log(req.query.orderId);
   sendResponse(res, {
     statusCode: 200,
     success: true,

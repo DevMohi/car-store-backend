@@ -85,7 +85,7 @@ declare module 'shurjopay' {
     transaction_status: string; // Payment status (e.g., Pending, Completed)
     method: string; // Payment method (e.g., bank cards, mobile wallets)
     sp_message: string; // Response message code description
-    sp_code: number; // Response code for transaction status
+    sp_code: string; // Response code for transaction status
     bank_status: string;
     name: string; // Customer's name who made the payment
     email: string; // Customer's email

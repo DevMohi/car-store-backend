@@ -1,10 +1,9 @@
 import { JwtPayload } from 'jsonwebtoken';
-import { TOrder } from './order.interface';
 import { User } from '../user/user.model';
 import AppError from '../../errors/AppError';
 import { Products } from '../products/products.model';
 import { Order } from './order.model';
-import { OrderUtils, shurjopay } from './order.utils';
+import { OrderUtils } from './order.utils';
 
 const createOrderIntoDB = async (
   orderInfo: { products: { product: string; quantity: number }[] },
@@ -79,7 +78,10 @@ const createOrderIntoDB = async (
 
 const verifyPayment = async (orderId: string) => {
   const verifiedPayment = await OrderUtils.verifyPaymentAsync(orderId);
-
+  console.log(verifiedPayment[0].sp_code);
+  if (verifiedPayment[0].sp_code === "1011") {
+    throw new AppError(404, "Order not found!")
+  }
   if (verifiedPayment.length) {
     await Order.findOneAndUpdate(
       {
@@ -112,7 +114,7 @@ const getCustomerOrderFromDB = async (email: string) => {
   if (!user) {
     throw new AppError(404, 'User Not Found');
   }
-  const result = await Order.find({ user: user._id });
+  const result = await Order.find({ user: user._id }).sort({ createdAt: -1 });
   return result;
 };
 
@@ -121,11 +123,11 @@ const getAllOrdersFromDB = async (email: string) => {
   if (!user) {
     throw new AppError(404, 'User Not Found');
   }
-  const result = await Order.find().sort({createdAt: -1}).populate('user');
+  const result = await Order.find().sort({ createdAt: -1 }).populate('user');
   return result;
 };
 
-const getOrderByIdFromDB = async (email: string, orderId:string) => {
+const getOrderByIdFromDB = async (email: string, orderId: string) => {
   const user = await User.findOne({ email });
   if (!user) {
     throw new AppError(404, 'User Not Found');

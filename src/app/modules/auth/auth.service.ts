@@ -118,7 +118,7 @@ const getNewRefreshToken = async (token: string) => {
     email: user.email,
     role: user.role,
   };
-
+  
   const accessToken = createToken(
     jwtPayload,
     config.jwt_access_secret as string,
