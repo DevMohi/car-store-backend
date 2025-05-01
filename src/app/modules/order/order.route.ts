@@ -26,7 +26,7 @@ router.get('/order/:id', auth('admin','customer'), OrderControllers.getOrderById
 //Verify Payment
 router.get('/verify', auth('customer'), OrderControllers.orderverify);
 
-//admin can update order-delivery status
+//admin can update order-delivery status 
 router.patch(
   '/update-delivery-status/:orderId',
   auth('admin'),

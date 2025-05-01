@@ -22,14 +22,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-<<<<<<< HEAD
     origin: 'https://car-shop-frontend-assignment-4.vercel.app',
-=======
-    origin: [
-      'http://localhost:5173',
-      'https://car-shop-frontend-assignment-4.vercel.app',
-    ],
->>>>>>> bcb860ce1d8f1bbdf8d0a2128fcd89430df2b904
     credentials: true,
   }),
 );

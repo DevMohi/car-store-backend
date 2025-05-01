@@ -42,7 +42,10 @@ const getAllOrders = catchAsync(async (req, res) => {
 //Get all -> for all
 const getOrderById = catchAsync(async (req, res) => {
   const orderId = req.params.id;
-  const result = await OrderServices.getOrderByIdFromDB(req.user.email, orderId);
+  const result = await OrderServices.getOrderByIdFromDB(
+    req.user.email,
+    orderId,
+  );
   sendResponse(res, {
     statusCode: 200,
     success: true,

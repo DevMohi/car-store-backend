@@ -76,11 +76,10 @@ const refreshToken = catchAsync(async (req, res) => {
   });
 });
 
-
 export const AuthControllers = {
   loginUser,
   logoutUser,
   getMe,
   changePassword,
-  refreshToken
+  refreshToken,
 };

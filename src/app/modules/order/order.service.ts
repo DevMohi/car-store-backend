@@ -34,6 +34,7 @@ const createOrderIntoDB = async (
     if (product.stock < item.quantity) {
       throw new AppError(400, `Not enough stock for product ${item.product}.`);
     }
+    //cc
     const subTotal = product.price * item.quantity;
     totalPrice += subTotal;
 
